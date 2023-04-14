@@ -1,15 +1,37 @@
 ---
+import { prisma } from "../db/client";
+
+// add new view
+await prisma.views.create({
+  data: {
+    time: new Date(),
+    url: Astro.url.pathname,
+  },
+});
+
+// get view count
+const viewCount = await prisma.views.count({
+  where: {
+    url: Astro.url.pathname,
+  },
+});
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body
+    class="w-screen h-screen flex flex-col p-10 justify-center items-center text-center gap-10"
+  >
+    <h1 class="text-3xl">
+      Astro + Tailwind + Prisma + TypeScript + eslint + prettier
+    </h1>
+
+    <p class="text-xl">Views: {viewCount}</p>
+  </body>
 </html>
