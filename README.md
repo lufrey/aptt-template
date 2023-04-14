@@ -41,6 +41,7 @@ npm run dev
 ## 🧙‍♂️ Tips
 
 - use vscode to run eslint on save and disable normal formatting
+- use [Portainer](https://www.portainer.io/) to manage your docker containers
 
 ## 🧞 Commands
 
